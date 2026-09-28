@@ -119,7 +119,13 @@ static int __nocfi my_sel_open_handle_status(struct inode *inode, struct file *f
 		   ksu_selinux_hide_is_enabled)) {
 		struct page *data = READ_ONCE(fake_status);
 		if (data) {
-			filp->private_data = page_address(data);
+			/*
+			 * selinuxfs stores a struct page * in private_data
+			 * (sel_read_handle_status/sel_mmap_handle_status cast it
+			 * back and use page_to_pfn). Storing page_address(data)
+			 * here made mmap map a garbage pfn and crashed apps.
+			 */
+			filp->private_data = data;
 			return 0;
 		}
 	}
