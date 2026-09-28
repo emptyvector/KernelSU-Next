@@ -82,7 +82,7 @@ static int get_sid()
 	return 0;
 }
 
-int ksu_handle_slow_avc_audit(u32 *tsid)
+extern int ksu_handle_slow_avc_audit(u32 *tsid)
 {
 	if (atomic_read(&disable_spoof))
 		return 0;

@@ -619,7 +619,7 @@ static void ksu_apply_init_rc_proxy(struct file *file)
     file->f_op = &fops_proxy;
 }
 
-void ksu_handle_sys_read(unsigned int fd)
+extern void ksu_handle_sys_read(unsigned int fd)
 {
     struct file *file;
 
@@ -648,7 +648,7 @@ static bool is_volumedown_enough(unsigned int count)
 	return count >= 3;
 }
 
-int ksu_handle_input_handle_event(unsigned int *type, unsigned int *code,
+extern int ksu_handle_input_handle_event(unsigned int *type, unsigned int *code,
 					int *value)
 {
 #ifndef KSU_KPROBES_HOOK

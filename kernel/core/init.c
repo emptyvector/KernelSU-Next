@@ -34,8 +34,8 @@ extern int ksu_handle_execveat_sucompat(int *fd, struct filename **filename_ptr,
  * defines it as struct user_arg_ptr* is a conflicting declaration of the
  * same symbol.
  */
-int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
-			void *envp, int *flags)
+extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr,
+			       void *argv, void *envp, int *flags)
 {
 	ksu_handle_execveat_ksud(fd, filename_ptr,
 				 (struct user_arg_ptr *)argv,
